@@ -29,11 +29,12 @@ public class ArmatureRotation : MonoBehaviour
 
     void Update()
     {
-        Quaternion newRotation = ConvertRightHandedToLeftHandedQuaternion(gyro.attitude *
-                Quaternion.Euler(-90, 0, 0));
+        Quaternion newRotation =
+            ConvertRightHandedToLeftHandedQuaternion(gyro.attitude *
+            Quaternion.Euler(-90, 0, 0));
+
         // float angle = Quaternion.Angle(currRotation, Quaternion.identity);
         // Quaternion newRotation = ClampRotation(currRotation);
-
         transform.rotation =
             Quaternion
                 .Slerp(transform.rotation,
@@ -43,7 +44,11 @@ public class ArmatureRotation : MonoBehaviour
 
     private Quaternion ClampRotation(Quaternion currentRotation)
     {
-        return Quaternion.FromToRotation(Vector3.down, Vector3.ProjectOnPlane(currentRotation * Vector3.forward, Vector3.down));
+        return Quaternion
+            .FromToRotation(Vector3.down,
+            Vector3
+                .ProjectOnPlane(currentRotation * Vector3.forward,
+                Vector3.down));
     }
 
     private Quaternion
