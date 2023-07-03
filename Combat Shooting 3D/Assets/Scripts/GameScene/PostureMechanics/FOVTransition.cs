@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class FOVTransition : MonoBehaviour
 {
-    [SerializeField]
-    private Camera cam;
+    private Camera mainCamera;
 
     Coroutine zoomCoroutine;
+
+    void Start()
+    {
+        mainCamera = GetComponent<Camera>();
+    }
 
     void Update()
     {
@@ -19,7 +23,7 @@ public class FOVTransition : MonoBehaviour
             if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
 
             //Start new coroutine and zoom within 1 second
-            zoomCoroutine = StartCoroutine(LerpFieldOfView(cam, 20, 0.5f));
+            zoomCoroutine = StartCoroutine(LerpFieldOfView(mainCamera, 20, 0.5f));
         }
         else
         {
@@ -27,7 +31,7 @@ public class FOVTransition : MonoBehaviour
             if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
 
             //Start new coroutine and zoom within 1 second
-            zoomCoroutine = StartCoroutine(LerpFieldOfView(cam, 60, 0.5f));
+            zoomCoroutine = StartCoroutine(LerpFieldOfView(mainCamera, 60, 0.5f));
         }
     }
 

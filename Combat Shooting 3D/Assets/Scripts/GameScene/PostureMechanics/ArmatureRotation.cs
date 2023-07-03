@@ -4,16 +4,37 @@ using UnityEngine;
 
 public class ArmatureRotation : MonoBehaviour
 {
-    private bool gyroEnabled;
+
+    #region Serialized Field
+    
+    [Header("Serizlied Field")]
+
+    [SerializeField]
+    private GameObject weaponPivot;
+
+    #endregion
+
+    #region Field Variable
+
+    private bool isGyroEnabled;
 
     private Gyroscope gyro;
 
     float smoothFactor = 5.0f;
 
-    void Start()
+    private Vector3 armatureRotationYZ;
+
+    private Vector3 globalForwardYZ;
+
+    #endregion
+
+    private void Start()
     {
-        gyroEnabled = EnableGyro();
-        Debug.Log (gyroEnabled);
+        isGyroEnabled = EnableGyro();
+        Debug.Log (isGyroEnabled);
+
+        globalForwardYZ = Vector3.forward;
+        armatureRotationYZ = new Vector3(0f, transform.forward.y, transform.forward.z);
     }
 
     private bool EnableGyro()
@@ -33,13 +54,20 @@ public class ArmatureRotation : MonoBehaviour
             ConvertRightHandedToLeftHandedQuaternion(gyro.attitude *
             Quaternion.Euler(-90, 0, 0));
 
-        // float angle = Quaternion.Angle(currRotation, Quaternion.identity);
-        // Quaternion newRotation = ClampRotation(currRotation);
         transform.rotation =
             Quaternion
                 .Slerp(transform.rotation,
                 newRotation,
                 Time.deltaTime * smoothFactor);
+
+        Debug.Log("y: " + transform.forward.y);
+
+        armatureRotationYZ.y = transform.forward.y;
+        armatureRotationYZ.z = transform.forward.z;
+
+        Debug.Log("z: " + transform.forward.z);
+
+        Debug.Log("Angle: " + Vector3.Angle(armatureRotationYZ, globalForwardYZ));
     }
 
     private Quaternion ClampRotation(Quaternion currentRotation)

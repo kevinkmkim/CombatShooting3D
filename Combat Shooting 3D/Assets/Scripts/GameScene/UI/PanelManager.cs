@@ -15,6 +15,10 @@ public class PanelManager : MonoBehaviour
 
     private float easeLength = 2f;
 
+    #region Serizlied Field
+    
+    [Header("Panels")]
+
     [SerializeField]
     private GameObject triggerPanel;
 
@@ -25,43 +29,48 @@ public class PanelManager : MonoBehaviour
     private GameObject dimPanel;
 
     [SerializeField]
-    private CanvasGroup dimPanelCanvasGroup;
-
-    [SerializeField]
     private GameObject warningPanel;
-
-    [SerializeField]
-    private CanvasGroup warningPanelCanvasGroup;
 
     [SerializeField]
     private GameObject violationPanel;
 
     [SerializeField]
-    private CanvasGroup violationPanelCanvasGroup;
+    private GameObject classicModePanel;
+    
+    [SerializeField]
+    private GameObject marathonModePanel;
 
     [SerializeField]
-    private GameObject classicModePanel;
+    private GameObject laneNumberPanel;
+
+    [Header("Canvas Groups")]
+    [SerializeField]
+    private CanvasGroup dimPanelCanvasGroup;
+
+    [SerializeField]
+    private CanvasGroup warningPanelCanvasGroup;
+
+    [SerializeField]
+    private CanvasGroup violationPanelCanvasGroup;
 
     [SerializeField]
     private CanvasGroup classicModePanelCanvasGroup;
 
     [SerializeField]
-    private GameObject laneNumberPanel;
+    private CanvasGroup marathonModePanelCanvasGroup;
 
+    [Header ("Texts")]
     [SerializeField]
     private TextMeshProUGUI classicScoreText;
 
     [SerializeField]
-    private GameObject marathonModePanel;
-
-    [SerializeField]
-    private CanvasGroup marathonModePanelCanvasGroup;
-
-    [SerializeField]
     private TextMeshProUGUI marathonScoreText;
 
+    [Header ("Events")]
     [SerializeField]
     GameManager gameEvents;
+
+    #endregion
 
     void Start()
     {

@@ -10,8 +10,6 @@ public class Weapon : MonoBehaviour
 
     public Transform firePoint;
 
-    public Transform pivotTransform;
-
     public GameObject bulletPrefab;
 
     // private float angleIncrement = 90f;
