@@ -17,7 +17,7 @@ public class TriggerManager : MonoBehaviour
 
     private float deltaY;
 
-    Touch? triggerTouch = null; // Touch that is used to pull the trigger
+    Touch? triggerTouch = null;
 
     private Gamepad gamepad;
 
@@ -96,13 +96,9 @@ public class TriggerManager : MonoBehaviour
                 initialTouchPosition = touch.position.y;
             }
             deltaY = touch.position.y - initialTouchPosition;
-            // Debug.Log(touch.phase);
-            // Debug.Log(touch.position.y);
-            // Debug.Log (deltaY);
         }
         else
         {
-            // Debug.Log("No Trigger Touch");
             initialTouchPosition = -1.0f;
             deltaY = 0;
         }
