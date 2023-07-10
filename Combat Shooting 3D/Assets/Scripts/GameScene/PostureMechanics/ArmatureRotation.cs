@@ -60,14 +60,8 @@ public class ArmatureRotation : MonoBehaviour
                 newRotation,
                 Time.deltaTime * smoothFactor);
 
-        Debug.Log("y: " + transform.forward.y);
-
-        armatureRotationYZ.y = transform.forward.y;
-        armatureRotationYZ.z = transform.forward.z;
-
-        Debug.Log("z: " + transform.forward.z);
-
-        Debug.Log("Angle: " + Vector3.Angle(armatureRotationYZ, globalForwardYZ));
+        // armatureRotationYZ.y = transform.forward.y;
+        // armatureRotationYZ.z = transform.forward.z;
     }
 
     private Quaternion ClampRotation(Quaternion currentRotation)

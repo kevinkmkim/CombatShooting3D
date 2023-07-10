@@ -15,22 +15,14 @@ public class FOVTransition : MonoBehaviour
 
     void Update()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         if (LowerLeftClick() && LowerRightClick())
         {
-            //Stop old coroutine
             if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
-
-            //Start new coroutine and zoom within 1 second
             zoomCoroutine = StartCoroutine(LerpFieldOfView(mainCamera, 20, 0.5f));
         }
         else
         {
-            //Stop old coroutine
             if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
-
-            //Start new coroutine and zoom within 1 second
             zoomCoroutine = StartCoroutine(LerpFieldOfView(mainCamera, 60, 0.5f));
         }
     }
@@ -78,11 +70,9 @@ public class FOVTransition : MonoBehaviour
 
             float fOVTime = counter / duration;
 
-            // Debug.Log(fOVTime);
             //Change FOV
             targetCamera.fieldOfView = Mathf.Lerp(fromFOV, toFOV, fOVTime);
-
-            //Wait for a frame
+            
             yield return null;
         }
     }
