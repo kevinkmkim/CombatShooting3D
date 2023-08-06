@@ -8,12 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    /*
-    0: Classic
-    1: Marathon
-    2: Multiplayer
-    */
-    // public static int mode = 0;
     public enum Mode
     {
         Classic,
@@ -46,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public static bool isPregame;
 
-    private bool isViolationGracePeriod;
+    // private bool isViolationGracePeriod;
 
     private float[]
         playerXPosition = { 216.8f, 236.8f, 256.8f, 276.8f, 296.8f };
@@ -132,9 +126,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Target[] targetEvents;
 
-    void Start()
+    void OnEnable()
     {
-        triggerEvents.OnShoot += HandleShoot;
+        triggerEvents.OnShoot += HandleShot;
 
         foreach (Target targetEvent in targetEvents)
         {
@@ -154,7 +148,7 @@ public class GameManager : MonoBehaviour
         laneText.text = "Lane " + laneNumber.ToString();
 
         isGameOver = false;
-        isViolationGracePeriod = true;
+        // isViolationGracePeriod = true;
         isPregame = true;
 
         if (Application.systemLanguage == SystemLanguage.English)
@@ -185,18 +179,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (
-            Quaternion.Angle(armature.transform.rotation, Quaternion.identity) >
-            70 &&
-            !isViolationGracePeriod
-        )
-        {
-            isGameOver = true;
-            OnViolationOfSafetyProtocol?.Invoke();
-        }
-    }
+    // void Update()
+    // {
+    //     if (
+    //         Quaternion.Angle(armature.transform.rotation, Quaternion.identity) >
+    //         70 &&
+    //         !isViolationGracePeriod
+    //     )
+    //     {
+    //         isGameOver = true;
+    //         OnViolationOfSafetyProtocol?.Invoke();
+    //     }
+    // }
 
     IEnumerator EndPregame()
     {
@@ -207,7 +201,7 @@ public class GameManager : MonoBehaviour
     IEnumerator EndViolationGracePeriod()
     {
         yield return new WaitForSeconds(5.0f);
-        isViolationGracePeriod = false;
+        // isViolationGracePeriod = false;
         yield return new WaitForSeconds(3.0f);
     }
 
@@ -230,7 +224,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandleShoot()
+    private void HandleShot()
     {
         if (!PauseManager.isPaused)
         {
