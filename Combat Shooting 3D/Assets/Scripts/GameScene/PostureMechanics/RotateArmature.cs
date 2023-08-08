@@ -8,6 +8,7 @@ public class RotateArmature : MonoBehaviour
     private Gyroscope gyro;
     private float smoothFactor = 0.5f;
     private Quaternion rotationOffset = Quaternion.identity;
+    private Quaternion deviceRotation;
     #endregion
 
     private void EnableGyro()
@@ -21,20 +22,23 @@ public class RotateArmature : MonoBehaviour
         Debug.LogWarning("Gyroscope is not supported on this device.");
     }
 
-    private void Start()
+    private void OnEnable()
     {
         EnableGyro();
     }
 
     void Update()
     {
+        if (gyro != null)
+        {
             // Get the gyroscope's rotation and apply it to the GameObject
-            Quaternion deviceRotation = gyro.attitude;
+            deviceRotation = gyro.attitude;
             Quaternion adjustedRotation = Quaternion.Euler(90f, 0f, 0f) * (new Quaternion(-deviceRotation.x, -deviceRotation.y, deviceRotation.z, deviceRotation.w));
 
             // Apply the smooth factor to the rotation update
             rotationOffset = Quaternion.Slerp(rotationOffset, adjustedRotation, smoothFactor);
 
             transform.rotation = rotationOffset;
+        }
     }
 }

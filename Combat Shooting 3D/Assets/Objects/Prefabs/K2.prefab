@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4619101467912526403}
   - component: {fileID: 7493619270471495305}
   m_Layer: 0
-  m_Name: k2_asset
+  m_Name: K2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

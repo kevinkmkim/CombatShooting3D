@@ -7,30 +7,21 @@ public class TargetManager : MonoBehaviour
     public delegate void TargetHitDelegate(int targetDistance, int targetNum);
 
     [SerializeField]
-    private Target[] someTargetEvents;
-
-    void Start()
-    {
-        OnEnable();
-    }
-
-    void Update()
-    {
-    }
+    private Target[] targetEvents;
 
     private void OnEnable()
     {
-        foreach (Target someTargetEvent in someTargetEvents)
+        foreach (Target targetEvent in targetEvents)
         {
-            someTargetEvent.OnTargetHit += HandleTargetHit;
+            targetEvent.OnTargetHit += HandleTargetHit;
         }
     }
-
+    
     private void OnDisable()
     {
-        foreach (Target someTargetEvent in someTargetEvents)
+        foreach (Target targetEvent in targetEvents)
         {
-            someTargetEvent.OnTargetHit -= HandleTargetHit;
+            targetEvent.OnTargetHit -= HandleTargetHit;
         }
     }
 
