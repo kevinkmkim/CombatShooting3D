@@ -1,8 +1,9 @@
 using UnityEngine;
 
-[System.Serializable]
-public class Target
+[CreateAssetMenu(menuName = "Items/Target")]
+public class Target : ScriptableObject
 {
-    public int targetDistance;
-    public int targetIndex;
+    public int index;
+    public int distance;
+    public Vector3 position;
 }

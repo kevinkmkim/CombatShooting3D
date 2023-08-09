@@ -16,31 +16,22 @@ public class GameManager : MonoBehaviour
         Multiplayer
     }
 
-    public static Mode currentMode = Mode.Classic;
+    #region Serialized Field
+    [SerializeField] public Stage stage;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    #endregion
 
-    [SerializeField]
-    private GameObject targetPrefab;
-
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
-
+    #region Properties
     private AudioClip gunShotAudioClip;
-
     private AudioSource gunShotAudioSource;
-
+    public static Mode currentMode = Mode.Classic;
     public static int score;
-
     public static int remainingAmmos;
-
     public static int laneNumber;
-
     public static int activeDistance = -1;
-
     public static bool isGameOver;
-
     public static bool isPregame;
-
-    // private bool isViolationGracePeriod;
+    #endregion
 
     private float[]
         playerXPosition = { 216.8f, 236.8f, 256.8f, 276.8f, 296.8f };
@@ -109,22 +100,12 @@ public class GameManager : MonoBehaviour
         };
 
     public event OutOfAmmoDelegate OnOutOfAmmo;
-
     public delegate void OutOfAmmoDelegate();
-
     public event GameOverDelegate OnGameOver;
-
     public delegate void GameOverDelegate(Mode m);
 
-    public event ViolationOfSafetyProtocolDelegate OnViolationOfSafetyProtocol;
-
-    public delegate void ViolationOfSafetyProtocolDelegate();
-
-    [SerializeField]
-    TriggerManager triggerEvents;
-
-    [SerializeField]
-    Target[] targetEvents;
+    [SerializeField] TriggerManager triggerEvents;
+    [SerializeField] Target[] targetEvents;
 
     void OnEnable()
     {
@@ -152,7 +133,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(Application.systemLanguage);
         }
 
-        Debug.Log (currentMode);
+        Debug.Log(currentMode);
         StartCoroutine(EndViolationGracePeriod());
         StartCoroutine(EndPregame());
         switch (currentMode)
@@ -204,8 +185,8 @@ public class GameManager : MonoBehaviour
     private void HandleTargetHit(int targetDistance, int targetNum)
     {
         Debug.Log("HandleTargetHit");
-        Debug.Log (targetDistance);
-        Debug.Log (targetNum);
+        Debug.Log(targetDistance);
+        Debug.Log(targetNum);
         if (targetNum == laneNumber)
         {
             score++;
@@ -230,7 +211,7 @@ public class GameManager : MonoBehaviour
                 {
                     remainingAmmos--;
                     Weapon.Shoot();
-                    gunShotAudioSource.PlayOneShot (gunShotAudioClip);
+                    gunShotAudioSource.PlayOneShot(gunShotAudioClip);
                     VibrateDevice.Vibrate(100);
                 }
                 else
@@ -243,7 +224,7 @@ public class GameManager : MonoBehaviour
                 if (!isGameOver)
                 {
                     Weapon.Shoot();
-                    gunShotAudioSource.PlayOneShot (gunShotAudioClip);
+                    gunShotAudioSource.PlayOneShot(gunShotAudioClip);
                     VibrateDevice.Vibrate(100);
                 }
             }
@@ -313,7 +294,7 @@ public class GameManager : MonoBehaviour
         {
             int randomIndex = UnityEngine.Random.Range(0, distance.Length);
             int randomDistance = distance[randomIndex];
-            Debug.Log (randomDistance);
+            Debug.Log(randomDistance);
 
             activeDistance = randomDistance;
             yield return new WaitForSeconds(8f);

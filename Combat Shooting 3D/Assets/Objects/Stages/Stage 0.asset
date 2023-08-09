@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa2cf87a6db92464e851d5d50cf49e58, type: 3}
-  m_Name: Stage 1
+  m_Name: Stage 0
   m_EditorClassIdentifier: 
   id: 1001
-  stageName: 
+  stageName: Shooting Gallery
   terrain: {fileID: 2552295921300661292, guid: 345ed4851138149939e935b3102b50fb, type: 3}
   target: {fileID: 2672569314604813706, guid: d84eb02a43a5240f59a8ca9aac36c415, type: 3}
+  playerPositions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 297, y: 14.5, z: 87.7}

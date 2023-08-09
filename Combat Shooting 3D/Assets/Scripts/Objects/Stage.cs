@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Stage")]
 public class Stage : ScriptableObject
 {
-    [SerializeField]
     public int id;
     public string stageName;
     public GameObject terrain;
     public GameObject target;
+    public Vector3[] playerPositions;
+    public int columns;
+    public float[] distances;
+    public Target[] targets;
 }

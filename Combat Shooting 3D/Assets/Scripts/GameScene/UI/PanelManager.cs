@@ -76,8 +76,6 @@ public class PanelManager : MonoBehaviour
     {
         gameEvents.OnOutOfAmmo += HandleOutOfAmmo;
         gameEvents.OnGameOver += HandleGameOver;
-        gameEvents.OnViolationOfSafetyProtocol +=
-            HandleViolationOfSafetyProtocol;
 
         StartCoroutine(FadePanel(laneNumberPanel.GetComponent<CanvasGroup>(),
         laneNumberPanel.GetComponent<CanvasGroup>().alpha,
