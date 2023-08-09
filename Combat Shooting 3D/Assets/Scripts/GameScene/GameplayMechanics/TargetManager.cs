@@ -2,31 +2,27 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public event TargetHitDelegate OnTargetHit;
-    public delegate void TargetHitDelegate(int targetDistance, int targetNum);
+    #region Serialized Field
+    // [SerializeField] private Target[] targets;
+    [SerializeField] private GameObject targetPrefab;
+    #endregion
 
-    [SerializeField]
-    private Target[] targets;
+    #region Properties
+    private Transform[] targetPositions;
+    #endregion
 
     private void OnEnable()
     {
-        foreach (Target target in targets)
+        foreach (Transform targetPosition in targetPositions)
         {
-            target.OnTargetHit += HandleTargetHit;
+            GameObject targetObject = Instantiate(targetPrefab, targetPosition);
+            TargetController targetController = targetObject.GetComponent<TargetController>();
+
+            targetController.Initialize();
         }
     }
 
     private void OnDisable()
     {
-        foreach (Target target in targets)
-        {
-            target.OnTargetHit -= HandleTargetHit;
-        }
-    }
-
-    private void HandleTargetHit(int targetDistance, int targetNum)
-    {
-        Debug.Log("HandleTargetHit TARGET MANAGER");
-        OnTargetHit?.Invoke(targetDistance, targetNum);
     }
 }

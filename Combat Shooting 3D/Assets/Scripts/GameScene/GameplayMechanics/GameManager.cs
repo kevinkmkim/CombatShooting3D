@@ -130,10 +130,6 @@ public class GameManager : MonoBehaviour
     {
         triggerEvents.OnShoot += HandleShot;
 
-        foreach (Target targetEvent in targetEvents)
-        {
-            targetEvent.OnTargetHit += HandleTargetHit;
-        }
         score = 0;
         scoreText.text = score.ToString();
         remainingAmmos = 20;
