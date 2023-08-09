@@ -2,32 +2,31 @@ using UnityEngine;
 
 public class TargetManager : MonoBehaviour
 {
-    public event TargetHitDelegate OnAnyTargetsHit;
-
+    public event TargetHitDelegate OnTargetHit;
     public delegate void TargetHitDelegate(int targetDistance, int targetNum);
 
     [SerializeField]
-    private Target[] targetEvents;
+    private Target[] targets;
 
     private void OnEnable()
     {
-        foreach (Target targetEvent in targetEvents)
+        foreach (Target target in targets)
         {
-            targetEvent.OnTargetHit += HandleTargetHit;
+            target.OnTargetHit += HandleTargetHit;
         }
     }
-    
+
     private void OnDisable()
     {
-        foreach (Target targetEvent in targetEvents)
+        foreach (Target target in targets)
         {
-            targetEvent.OnTargetHit -= HandleTargetHit;
+            target.OnTargetHit -= HandleTargetHit;
         }
     }
 
     private void HandleTargetHit(int targetDistance, int targetNum)
     {
         Debug.Log("HandleTargetHit TARGET MANAGER");
-        OnAnyTargetsHit?.Invoke(targetDistance, targetNum);
+        OnTargetHit?.Invoke(targetDistance, targetNum);
     }
 }

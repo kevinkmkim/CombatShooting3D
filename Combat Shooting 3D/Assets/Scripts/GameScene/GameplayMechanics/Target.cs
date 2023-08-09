@@ -25,27 +25,6 @@ public class Target : MonoBehaviour
         // shotDetected = false;
     }
 
-    void Update()
-    {
-        if (
-            (targetDistance == GameManager.activeDistance &&
-            !GameManager.targetsHit.Contains(targetNum)) || GameManager.isPregame
-        )
-        {
-            Up();
-            // isActive = true;
-        }
-        else
-        {
-            Down();
-            // if (isActive)
-            // {
-            //     Down();
-            //     isActive = false;
-            // }
-        }
-    }
-
     private void Up()
     {
         transform.rotation =
