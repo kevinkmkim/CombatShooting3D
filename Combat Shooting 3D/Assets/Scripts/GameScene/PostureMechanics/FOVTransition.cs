@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FOVTransition : MonoBehaviour
 {
+    #region Properties
     private Camera mainCamera;
-
-    Coroutine zoomCoroutine;
+    private Coroutine zoomCoroutine;
+    #endregion
 
     void Start()
     {

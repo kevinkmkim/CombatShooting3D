@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateArmature : MonoBehaviour
 {
-    #region Field Variable
+    #region Properties
     private Gyroscope gyro;
     private float smoothFactor = 0.5f;
     private Quaternion rotationOffset = Quaternion.identity;
@@ -18,7 +18,6 @@ public class RotateArmature : MonoBehaviour
             gyro = Input.gyro;
             gyro.enabled = true;
         }
-
         Debug.LogWarning("Gyroscope is not supported on this device.");
     }
 

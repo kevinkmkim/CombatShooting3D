@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 
     private float speed = 500f;
 
-    void Start()
+    void OnEnable()
     {
         transform.GetComponent<Rigidbody>().velocity =
             transform.forward * speed * -1;
@@ -21,8 +21,6 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Terrain"))
             {
-                // Collision with terrain detected
-                // Debug.Log("Collision with terrain detected");
                 GameManager.isGameOver = true;
             }
         }

@@ -11,23 +11,20 @@ using UnityEngine.UI;
 // #endif
 public class TriggerManager : MonoBehaviour
 {
-    RectTransform triggerRectTranform;
-
+    #region Properties
+    private RectTransform triggerRectTranform;
     private float initialTouchPosition;
-
     private float deltaY;
-
-    Touch? triggerTouch = null;
-
+    private Touch? triggerTouch = null;
     private Gamepad gamepad;
-
     private float coolDownTime = 1.0f;
-
     private bool isCoroutineRunning = false;
+    #endregion
 
+    #region Events
     public event ShootDelegate OnShoot;
-
     public delegate void ShootDelegate();
+    #endregion
 
     void Start()
     {

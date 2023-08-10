@@ -7,14 +7,11 @@ public class WeaponManager : MonoBehaviour
 {
 
     #region Serialized Field
-
-    [Header("Serizlied Field")]
     [SerializeField] private Button readyWeaponButton;
     [SerializeField] private Transform weaponPivotTransform;
-
     #endregion
 
-    #region Field Variable
+    #region Properties
     private bool isWeaponReady = false;
     private Vector3 readyWeaponPosition = new Vector3(0.0f, -0.36f, 0.12f);
     private Quaternion readyWeaponRotation = Quaternion.Euler(0f, 0f, 0f);

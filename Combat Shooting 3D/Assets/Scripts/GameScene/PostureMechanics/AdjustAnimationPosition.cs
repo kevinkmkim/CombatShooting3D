@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class AdjustAnimationPosition : MonoBehaviour
 {
+    [SerializeField] private float adjustAmount;
+
+    #region Properties
     private Animator animator;
     private Vector3 initPosition;
     private float nextNormalizedTime = 1.0f;
-
-    [SerializeField]
-    private float adjustAmount;
+    #endregion
 
     void Start()
     {

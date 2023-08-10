@@ -7,69 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class PanelManager : MonoBehaviour
 {
-    private float fadeTime = 1.0f;
-
-    private float targetAlpha = 1.0f;
-
-    private float easeFactor = 0.05f;
-
-    private float easeLength = 2f;
-
     #region Serizlied Field
-    
     [Header("Panels")]
-
-    [SerializeField]
-    private GameObject triggerPanel;
-
-    [SerializeField]
-    private GameObject uiPanel;
-
-    [SerializeField]
-    private GameObject dimPanel;
-
-    [SerializeField]
-    private GameObject warningPanel;
-
-    [SerializeField]
-    private GameObject violationPanel;
-
-    [SerializeField]
-    private GameObject classicModePanel;
-    
-    [SerializeField]
-    private GameObject marathonModePanel;
-
-    [SerializeField]
-    private GameObject laneNumberPanel;
+    [SerializeField] private GameObject triggerPanel;
+    [SerializeField] private GameObject uiPanel;
+    [SerializeField] private GameObject dimPanel;
+    [SerializeField] private GameObject warningPanel;
+    [SerializeField] private GameObject violationPanel;
+    [SerializeField] private GameObject classicModePanel;
+    [SerializeField] private GameObject marathonModePanel;
+    [SerializeField] private GameObject laneNumberPanel;
 
     [Header("Canvas Groups")]
-    [SerializeField]
-    private CanvasGroup dimPanelCanvasGroup;
+    [SerializeField] private CanvasGroup dimPanelCanvasGroup;
+    [SerializeField] private CanvasGroup warningPanelCanvasGroup;
+    [SerializeField] private CanvasGroup violationPanelCanvasGroup;
+    [SerializeField] private CanvasGroup classicModePanelCanvasGroup;
+    [SerializeField] private CanvasGroup marathonModePanelCanvasGroup;
 
-    [SerializeField]
-    private CanvasGroup warningPanelCanvasGroup;
+    [Header("Texts")]
+    [SerializeField] private TextMeshProUGUI classicScoreText;
+    [SerializeField] private TextMeshProUGUI marathonScoreText;
 
-    [SerializeField]
-    private CanvasGroup violationPanelCanvasGroup;
+    [Header("Events")]
+    [SerializeField] private GameManager gameEvents;
+    #endregion
 
-    [SerializeField]
-    private CanvasGroup classicModePanelCanvasGroup;
-
-    [SerializeField]
-    private CanvasGroup marathonModePanelCanvasGroup;
-
-    [Header ("Texts")]
-    [SerializeField]
-    private TextMeshProUGUI classicScoreText;
-
-    [SerializeField]
-    private TextMeshProUGUI marathonScoreText;
-
-    [Header ("Events")]
-    [SerializeField]
-    GameManager gameEvents;
-
+    #region Properties
+    private float fadeTime = 1.0f;
+    private float targetAlpha = 1.0f;
+    private float easeFactor = 0.05f;
+    private float easeLength = 2f;
     #endregion
 
     void Start()

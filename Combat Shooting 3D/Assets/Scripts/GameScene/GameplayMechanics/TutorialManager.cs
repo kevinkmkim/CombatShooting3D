@@ -5,30 +5,24 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    #region Serialized Fields
+    [SerializeField] private GameObject dimPanel;
+    [SerializeField] private TextMeshProUGUI tutorialMessage;
+    #endregion
+
+    #region Properties
     public float slowDownDuration = 2.0f;
-
     private float startTimeScale;
-
-    [SerializeField]
-    private GameObject dimPanel;
-
     private CanvasGroup dimPanelCanvasGroup;
-
-    [SerializeField]
-    private TextMeshProUGUI tutorialMessage;
+    #endregion
 
     void Start()
     {
         dimPanelCanvasGroup = dimPanel.GetComponent<CanvasGroup>();
     }
 
-    void Update()
-    {
-    }
-
     void StartTutorial()
     {
-        // StartCoroutine(WaitAndPlayTutorial());
         dimPanel.SetActive(true);
         FadeDimPanel();
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -39,18 +33,8 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("Hit the targets in your lane");
             Debug.Log("Keep your gun facing forward");
         }
-        // PlayerPrefs.SetInt("IsFirstTime", false);
-        // PlayerPrefs.Save();
     }
-
-    void WaitAndPlayTutorial()
-    {
-        // yield return new WaitForSeconds(2.0f);
-        // Time.timeScale = 0;
-        // yield return new WaitForSeconds(2.0f);
-        // Time.timeScale = 1;
-    }
-
+    
     public void StopSlowMotion()
     {
         Time.timeScale = 1.0f;

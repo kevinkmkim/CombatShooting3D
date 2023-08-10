@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class RecoilEffect : MonoBehaviour
 {
-    [SerializeField]
-    TriggerManager triggerEvents;
+    [SerializeField] private TriggerManager triggerEvents;
 
+    #region Properties
     public float recoilDistance = 0.01f;
-
     public float recoilSpeed = 2.0f;
-
     private Vector3 originalPosition;
+    #endregion
 
     void Start()
     {
@@ -20,13 +19,11 @@ public class RecoilEffect : MonoBehaviour
 
     void OnEnable()
     {
-        // Subscribe to triggerEvents
         triggerEvents.OnShoot += HandleShoot;
     }
 
     void OnDisable()
     {
-        // Unsubscribe from triggerEvents
         triggerEvents.OnShoot -= HandleShoot;
     }
 
@@ -71,7 +68,5 @@ public class RecoilEffect : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
-        // transform.localPosition = originalPosition;
     }
 }
