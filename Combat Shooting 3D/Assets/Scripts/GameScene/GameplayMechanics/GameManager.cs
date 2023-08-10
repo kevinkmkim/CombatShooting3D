@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-
     public enum Mode
     {
         Classic,
@@ -19,110 +17,67 @@ public class GameManager : MonoBehaviour
     #region Serialized Field
     [SerializeField] public Stage stage;
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI laneText;
+    [SerializeField] private GameObject armature;
+    [SerializeField] private GameObject player;
     #endregion
 
     #region Properties
+    public int Score { get; private set; }
+    public int LaneNumber { get; private set; }
+    public int ActiveTargetDistance { get; private set; }
+    public bool IsGameOver { get; private set; }
+    public Mode CurrentMode { get; private set; }
+
     private AudioClip gunShotAudioClip;
     private AudioSource gunShotAudioSource;
     public static Mode currentMode = Mode.Classic;
-    public static int score;
     public static int remainingAmmos;
-    public static int laneNumber;
     public static int activeDistance = -1;
     public static bool isGameOver;
     public static bool isPregame;
+    private float[] playerXPosition = { 216.8f, 236.8f, 256.8f, 276.8f, 296.8f };
+    private Vector3 forwardDirection = Vector3.zero;
+    public static HashSet<int> targetsHit = new HashSet<int>();
+    private int[] classicModeOrder = 
+    {
+        100,200,100,200,
+        100,200,100,200,
+        50,100,25,50,
+        25,50,100,200,
+        25,50,25,50
+    };
+    private int[] longrangeModeOrder =
+    {
+        100,200,250,100,
+        200,250,100,200,
+        250,100,200,250,
+        100,200,250,100,
+        200,250,200,250
+    };
     #endregion
 
-    private float[]
-        playerXPosition = { 216.8f, 236.8f, 256.8f, 276.8f, 296.8f };
-
-    [SerializeField]
-    TextMeshProUGUI laneText;
-
-    [SerializeField]
-    private GameObject armature;
-
-    [SerializeField]
-    private GameObject player;
-
-    private Vector3 forwardDirection = Vector3.zero;
-
-    public static HashSet<int> targetsHit = new HashSet<int>();
-
-    private int[]
-        classicModeOrder =
-        {
-            100,
-            200,
-            100,
-            200,
-            100,
-            200,
-            100,
-            200,
-            50,
-            100,
-            25,
-            50,
-            25,
-            50,
-            100,
-            200,
-            25,
-            50,
-            25,
-            50
-        };
-
-    private int[]
-        longrangeModeOrder =
-        {
-            100,
-            200,
-            250,
-            100,
-            200,
-            250,
-            100,
-            200,
-            250,
-            100,
-            200,
-            250,
-            100,
-            200,
-            250,
-            100,
-            200,
-            250,
-            200,
-            250
-        };
-
+    #region Events
     public event OutOfAmmoDelegate OnOutOfAmmo;
     public delegate void OutOfAmmoDelegate();
+
     public event GameOverDelegate OnGameOver;
     public delegate void GameOverDelegate(Mode m);
-
-    [SerializeField] TriggerManager triggerEvents;
-    [SerializeField] Target[] targetEvents;
+    #endregion
 
     void OnEnable()
     {
-        triggerEvents.OnShoot += HandleShot;
-
-        score = 0;
-        scoreText.text = score.ToString();
+        Score = 0;
+        scoreText.text = Score.ToString();
         remainingAmmos = 20;
         gunShotAudioSource = GetComponent<AudioSource>();
         gunShotAudioClip = gunShotAudioSource.clip;
 
-        laneNumber = UnityEngine.Random.Range(1, 6);
         Vector3 playerPosition = player.transform.position;
-        playerPosition.x = playerXPosition[laneNumber - 1];
+        playerPosition.x = playerXPosition[LaneNumber - 1];
         player.transform.position = playerPosition;
 
-        laneText.text = "Lane " + laneNumber.ToString();
+        laneText.text = "Lane " + LaneNumber.ToString();
 
         isGameOver = false;
         // isViolationGracePeriod = true;
@@ -156,19 +111,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     if (
-    //         Quaternion.Angle(armature.transform.rotation, Quaternion.identity) >
-    //         70 &&
-    //         !isViolationGracePeriod
-    //     )
-    //     {
-    //         isGameOver = true;
-    //         OnViolationOfSafetyProtocol?.Invoke();
-    //     }
-    // }
-
     IEnumerator EndPregame()
     {
         yield return new WaitForSeconds(5.0f);
@@ -182,15 +124,25 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
     }
 
+    public void IncreaseScore(int amount)
+    {
+        Score += amount;
+    }
+
+    public void SetLaneNumber()
+    {
+        LaneNumber = UnityEngine.Random.Range(1, 6);
+    }
+
     private void HandleTargetHit(int targetDistance, int targetNum)
     {
         Debug.Log("HandleTargetHit");
         Debug.Log(targetDistance);
         Debug.Log(targetNum);
-        if (targetNum == laneNumber)
+        if (targetNum == LaneNumber)
         {
-            score++;
-            scoreText.text = score.ToString();
+            Score++;
+            scoreText.text = Score.ToString();
         }
         else
         {
@@ -298,7 +250,7 @@ public class GameManager : MonoBehaviour
 
             activeDistance = randomDistance;
             yield return new WaitForSeconds(8f);
-            if (!targetsHit.Contains(laneNumber))
+            if (!targetsHit.Contains(LaneNumber))
             {
                 isGameOver = true;
             }

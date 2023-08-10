@@ -17,8 +17,41 @@ MonoBehaviour:
   terrain: {fileID: 2552295921300661292, guid: 345ed4851138149939e935b3102b50fb, type: 3}
   target: {fileID: 2672569314604813706, guid: d84eb02a43a5240f59a8ca9aac36c415, type: 3}
   playerPositions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 216.8, y: 14.5, z: 87.7}
+  - {x: 236.8, y: 14.5, z: 87.7}
+  - {x: 256.8, y: 14.5, z: 87.7}
+  - {x: 276.8, y: 14.5, z: 87.7}
   - {x: 297, y: 14.5, z: 87.7}
+  columns: 5
+  distances:
+  - 25
+  - 50
+  - 100
+  - 200
+  - 250
+  targets:
+  - {fileID: 11400000, guid: db3c7ca25ea044a1da07b1a93ca9b7af, type: 2}
+  - {fileID: 11400000, guid: 37aa7c4bd30fb479385a736f56813a13, type: 2}
+  - {fileID: 11400000, guid: 217632204ba6d4c2c9033072fbde423e, type: 2}
+  - {fileID: 11400000, guid: cce44c91814564550a64178b7c0c4aee, type: 2}
+  - {fileID: 11400000, guid: 1e53844fe6ca8433e87c3d8f754c0d3a, type: 2}
+  - {fileID: 11400000, guid: ba428cf709e844ba8b9ac4eab498febe, type: 2}
+  - {fileID: 11400000, guid: bbd18b71eccde4b94bb3e8f39bfa8ce4, type: 2}
+  - {fileID: 11400000, guid: 6b8964e95b8bc4350b6f457898b53cf6, type: 2}
+  - {fileID: 11400000, guid: ed0ff21ae1938434b9d68362eb517b3a, type: 2}
+  - {fileID: 11400000, guid: b734309a22812491ab3c6aae971d55f4, type: 2}
+  - {fileID: 11400000, guid: 7429ddf1b33074ca19d0a09ac56804f1, type: 2}
+  - {fileID: 11400000, guid: 7792bc56100a84ea686fa51bab713ba4, type: 2}
+  - {fileID: 11400000, guid: fa2a57ed32bab47278a107f5f8f1e1a4, type: 2}
+  - {fileID: 11400000, guid: 3b267e82c69fc4be697c61df2ce44c28, type: 2}
+  - {fileID: 11400000, guid: dc5e4ad1812df4bab8053a32f252a113, type: 2}
+  - {fileID: 11400000, guid: 305e9e3e328604c13abf1f60e1583b59, type: 2}
+  - {fileID: 11400000, guid: 7bbea3e0355454ae686901ea45cc2ae5, type: 2}
+  - {fileID: 11400000, guid: 26df737bf786b46cc988829de02ecb59, type: 2}
+  - {fileID: 11400000, guid: f5f343859dec04bb593aacfb623ed7b5, type: 2}
+  - {fileID: 11400000, guid: bb8e308639c22418bbfcabf0eae544d9, type: 2}
+  - {fileID: 11400000, guid: 90ba4981da4c741e2abb638cd2bda982, type: 2}
+  - {fileID: 11400000, guid: 19a94b23cc2dc418784ca50739511e31, type: 2}
+  - {fileID: 11400000, guid: 2eb8caa45e2834c8cb7ca7f5ad0fbf09, type: 2}
+  - {fileID: 11400000, guid: 1a5af084cab5a49fca8bcef1463af03d, type: 2}
+  - {fileID: 11400000, guid: f0ac97460cc734fbf8dc0bdbb76111ee, type: 2}

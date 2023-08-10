@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 0_25_0
   m_EditorClassIdentifier: 
   index: 0
-  distance: 0
-  position: {x: 0, y: 0, z: 0}
+  distance: 25
+  position: {x: -90.60001, y: -51.97, z: -170}

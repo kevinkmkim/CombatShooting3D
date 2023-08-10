@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c30be720675b4ab1a14b71b6277ab36, type: 3}
   m_Name: 0_200_2
   m_EditorClassIdentifier: 
-  index: 0
-  distance: 0
-  position: {x: 0, y: 0, z: 0}
+  index: 2
+  distance: 250
+  position: {x: -44.5, y: -13.60001, z: -43}

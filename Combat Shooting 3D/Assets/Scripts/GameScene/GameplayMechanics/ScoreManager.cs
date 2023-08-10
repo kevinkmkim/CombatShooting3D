@@ -6,26 +6,21 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField]
-    GameManager gameEvents;
+    #region Serialized Field
+    [SerializeField] GameManager gameEvents;
+    [SerializeField] private TextMeshProUGUI classicScoreText;
+    [SerializeField] private TextMeshProUGUI classicAccumulatedText;
+    [SerializeField] private TextMeshProUGUI classicAccuracyText;
+    [SerializeField] private TextMeshProUGUI marathonScoreText;
+    [SerializeField] private TextMeshProUGUI marathonHighScoreText;
+    [SerializeField] private TextMeshProUGUI marathonAccuracyText;
+    #endregion
 
+    #region Properties
     private int classicAccumulatedHits;
-
     private int classicAccumulatedShots;
-
-    [SerializeField]
-    private TextMeshProUGUI classicScoreText;
-
-    [SerializeField]
-    private TextMeshProUGUI classicAccumulatedText;
-
-    [SerializeField]
-    private TextMeshProUGUI classicAccuracyText;
-
     private int longrangeAccumulatedHits;
-
     private int longrangeAccumulatedShots;
-
     // [SerializeField]
     // private TextMeshProUGUI longrangeScoreText;
     // [SerializeField]
@@ -33,21 +28,10 @@ public class ScoreManager : MonoBehaviour
     // [SerializeField]
     // private TextMeshProUGUI longrangeAccuracyText;
     private int marathonHighScore;
-
     private int marathonAccumulatedHits;
-
     private int marathonAccumulatedShots;
+    #endregion
 
-    [SerializeField]
-    private TextMeshProUGUI marathonScoreText;
-
-    [SerializeField]
-    private TextMeshProUGUI marathonHighScoreText;
-
-    [SerializeField]
-    private TextMeshProUGUI marathonAccuracyText;
-
-    // Start is called before the first frame update
     void Start()
     {
         gameEvents.OnGameOver += HandleGameOver;
@@ -90,8 +74,8 @@ public class ScoreManager : MonoBehaviour
 
     private void SetClassicScores()
     {
-        classicScoreText.text = GameManager.score.ToString() + " / 20";
-        int newAccumulatedHits = classicAccumulatedHits + GameManager.score;
+        classicScoreText.text = GameManager.Instance.Score.ToString() + " / 20";
+        int newAccumulatedHits = classicAccumulatedHits + GameManager.Instance.Score;
         int newAccumulatedShots = classicAccumulatedShots + 20;
         classicAccumulatedText.text = newAccumulatedHits.ToString();
         classicAccuracyText.text =
@@ -110,8 +94,8 @@ public class ScoreManager : MonoBehaviour
 
     private void SetLongrangeScores()
     {
-        classicScoreText.text = GameManager.score.ToString() + " / 20";
-        int newAccumulatedHits = classicAccumulatedHits + GameManager.score;
+        classicScoreText.text = GameManager.Instance.Score.ToString() + " / 20";
+        int newAccumulatedHits = classicAccumulatedHits + GameManager.Instance.Score;
         int newAccumulatedShots = classicAccumulatedShots + 20;
         classicAccumulatedText.text = newAccumulatedHits.ToString();
         classicAccuracyText.text =
@@ -130,11 +114,11 @@ public class ScoreManager : MonoBehaviour
 
     private void SetMarathonScores()
     {
-        marathonScoreText.text = GameManager.score.ToString();
-        int newHighScore = Math.Max(marathonHighScore, GameManager.score);
-        int newAccumulatedHits = marathonAccumulatedHits + GameManager.score;
+        marathonScoreText.text = GameManager.Instance.Score.ToString();
+        int newHighScore = Math.Max(marathonHighScore, GameManager.Instance.Score);
+        int newAccumulatedHits = marathonAccumulatedHits + GameManager.Instance.Score;
         int newAccumulatedShots =
-            marathonAccumulatedShots + GameManager.score + 1;
+            marathonAccumulatedShots + GameManager.Instance.Score + 1;
 
         marathonHighScoreText.text = newHighScore.ToString();
 
@@ -156,8 +140,8 @@ public class ScoreManager : MonoBehaviour
 
     private void SetMultiplayerScores()
     {
-        classicScoreText.text = GameManager.score.ToString() + " / 20";
+        classicScoreText.text = GameManager.Instance.Score.ToString() + " / 20";
         classicAccumulatedText.text =
-            (GameManager.score + classicAccumulatedHits).ToString();
+            (GameManager.Instance.Score + classicAccumulatedHits).ToString();
     }
 }
