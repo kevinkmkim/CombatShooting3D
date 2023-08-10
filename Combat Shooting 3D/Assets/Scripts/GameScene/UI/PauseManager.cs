@@ -6,41 +6,30 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+    #region Serialized Field
+    [SerializeField] private Sprite startSprite;
+    [SerializeField] private Sprite pauseSprite;
+    [SerializeField] private GameObject dimPanel;
+    [SerializeField] private CanvasGroup dimPanelCanvasGroup;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private CanvasGroup pausePanelCanvasGroup;
+    #endregion
+
+    #region Properties
     private Button pauseButton;
-
-    [SerializeField]
-    private Sprite startSprite;
-
-    [SerializeField]
-    private Sprite pauseSprite;
-
-    [SerializeField]
-    private GameObject dimPanel;
-
-    [SerializeField]
-    private CanvasGroup dimPanelCanvasGroup;
-
-    [SerializeField]
-    private GameObject pausePanel;
-
-    [SerializeField]
-    private CanvasGroup pausePanelCanvasGroup;
-
     public static bool isPaused = false;
+    #endregion
 
-    void Start()
+    void OnEnable()
     {
         pauseButton = GetComponent<Button>();
     }
 
     public void OnPauseButtonClick()
     {
-        Debug.Log("OnPauseButtonClick");
         if (isPaused)
         {
             Time.timeScale = 1;
-
-            // Change the image of the button to the pause sprite
             pauseButton.image.sprite = pauseSprite;
             isPaused = false;
             AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
@@ -53,8 +42,6 @@ public class PauseManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-
-            // Change the image of the button to the start sprite
             pauseButton.image.sprite = startSprite;
             isPaused = true;
             AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
@@ -70,12 +57,12 @@ public class PauseManager : MonoBehaviour
     {
         dimPanel.SetActive(true);
         pausePanel.SetActive(true);
-        StartCoroutine(PanelManager
+        StartCoroutine(MainUIManager
             .FadePanel(dimPanelCanvasGroup,
             dimPanelCanvasGroup.alpha,
             1,
             2 / 5));
-        StartCoroutine(PanelManager
+        StartCoroutine(MainUIManager
             .FadePanel(pausePanelCanvasGroup,
             pausePanelCanvasGroup.alpha,
             1,
@@ -84,12 +71,12 @@ public class PauseManager : MonoBehaviour
 
     private void HidePausePanel()
     {
-        StartCoroutine(PanelManager
+        StartCoroutine(MainUIManager
             .FadePanel(dimPanelCanvasGroup,
             dimPanelCanvasGroup.alpha,
             0,
             2 / 5));
-        StartCoroutine(PanelManager
+        StartCoroutine(MainUIManager
             .FadePanel(pausePanelCanvasGroup,
             pausePanelCanvasGroup.alpha,
             1,

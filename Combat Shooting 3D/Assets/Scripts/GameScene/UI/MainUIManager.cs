@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PanelManager : MonoBehaviour
+public class MainUIManager : MonoBehaviour
 {
     #region Serizlied Field
     [Header("Panels")]
