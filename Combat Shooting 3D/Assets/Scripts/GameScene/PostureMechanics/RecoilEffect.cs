@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RecoilEffect : MonoBehaviour
 {
-    [SerializeField] private TriggerManager triggerEvents;
+    // [SerializeField] private TriggerManager triggerEvents;
 
     #region Properties
     public float recoilDistance = 0.01f;
@@ -19,12 +19,12 @@ public class RecoilEffect : MonoBehaviour
 
     void OnEnable()
     {
-        triggerEvents.OnShoot += HandleShoot;
+        // triggerEvents.OnShoot += HandleShoot;
     }
 
     void OnDisable()
     {
-        triggerEvents.OnShoot -= HandleShoot;
+        // triggerEvents.OnShoot -= HandleShoot;
     }
 
     void HandleShoot()

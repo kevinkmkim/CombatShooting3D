@@ -9,7 +9,6 @@ public class TargetController : MonoBehaviour
 
     public void Initialize(Stage stage)
     {
-        Instantiate(targetPrefab);
         foreach (Target target in stage.targets)
         {
             GameObject newTargetChild = Instantiate(targetPrefab, transform);

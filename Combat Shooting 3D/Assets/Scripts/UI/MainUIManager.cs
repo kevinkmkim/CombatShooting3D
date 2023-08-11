@@ -30,7 +30,7 @@ public class MainUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI marathonScoreText;
 
     [Header("Events")]
-    [SerializeField] private GameManager gameEvents;
+    // [SerializeField] private GameManager gameEvents;
     #endregion
 
     #region Properties
@@ -40,10 +40,10 @@ public class MainUIManager : MonoBehaviour
     private float easeLength = 2f;
     #endregion
 
-    void Start()
+    void OnEnable()
     {
-        gameEvents.OnOutOfAmmo += HandleOutOfAmmo;
-        gameEvents.OnGameOver += HandleGameOver;
+        // gameEvents.OnOutOfAmmo += HandleOutOfAmmo;
+        // gameEvents.OnGameOver += HandleGameOver;
 
         StartCoroutine(FadePanel(laneNumberPanel.GetComponent<CanvasGroup>(),
         laneNumberPanel.GetComponent<CanvasGroup>().alpha,

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RotateArmature : MonoBehaviour
 {
+    [SerializeField] private float smoothFactor = 50f;
+
     #region Properties
     private Gyroscope gyro;
-    private float smoothFactor = 0.5f;
     private Quaternion rotationOffset = Quaternion.identity;
     private Quaternion deviceRotation;
     #endregion
