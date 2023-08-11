@@ -7,11 +7,8 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     public static Weapon Instance;
-
     public Transform firePoint;
-
     public GameObject bulletPrefab;
-
     // private float angleIncrement = 90f;
 
     private void Awake()

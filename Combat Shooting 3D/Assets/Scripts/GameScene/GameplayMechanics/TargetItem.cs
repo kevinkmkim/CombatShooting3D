@@ -15,7 +15,7 @@ public class TargetItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Index: {index}")
-        Debug.Log($"Distance: {distance}")
+        Debug.Log($"Index: {index}");
+        Debug.Log($"Distance: {distance}");
     }
 }
