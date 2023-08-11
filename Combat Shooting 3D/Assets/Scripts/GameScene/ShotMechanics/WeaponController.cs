@@ -12,12 +12,19 @@ public class WeaponController : MonoBehaviour
     #endregion
 
     #region Properties
-    private bool isAiming = false;
+    private bool isAiming;
     private Vector3 aimWeaponPosition = new Vector3(0.0f, -0.36f, 0.12f);
     private Quaternion aimWeaponRotation = Quaternion.identity;
     private Vector3 easeWeaponPosition = new Vector3(0.2f, -0.5f, 0.25f);
     private Quaternion easeWeaponRotation = Quaternion.Euler(12.0f, -3.5f, 15.0f);
     #endregion
+
+    private void OnEnable()
+    {
+        isAiming = false;
+        weaponPivotTransform.localPosition = easeWeaponPosition;
+        weaponPivotTransform.localRotation = Quaternion.identity;
+    }
 
     public void HandleShootEvent()
     {
