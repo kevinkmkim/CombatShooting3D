@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    public void Initialize()
+    [SerializeField] private GameObject targetPrefab;
+    [SerializeField] private Transform spawnTransform;
+
+    public void Initialize(Stage stage)
     {
-        Debug.Log("Initializing");
+        Instantiate(targetPrefab);
+        foreach (Target target in stage.targets)
+        {
+            GameObject newTargetChild = Instantiate(targetPrefab, transform);
+            newTargetChild.transform.localPosition = target.position;
+
+            TargetItem newTargetChildScript = newTargetChild.GetComponent<TargetItem>();
+            newTargetChildScript.Initialize(target.index, target.distance);
+        }
     }
+
 }

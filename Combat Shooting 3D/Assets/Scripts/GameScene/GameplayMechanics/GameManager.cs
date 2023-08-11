@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private TextMeshProUGUI laneText;
     [SerializeField] private GameObject armature;
     [SerializeField] private GameObject player;
+    [SerializeField] private TargetController targetController;
     #endregion
 
     #region Properties
@@ -69,13 +70,14 @@ public class GameManager : Singleton<GameManager>
     {
         Score = 0;
         scoreText.text = Score.ToString();
+        targetController.Initialize(stage);
         remainingAmmos = 20;
         gunShotAudioSource = GetComponent<AudioSource>();
         gunShotAudioClip = gunShotAudioSource.clip;
 
         Vector3 playerPosition = player.transform.position;
-        playerPosition.x = playerXPosition[LaneNumber - 1];
-        player.transform.position = playerPosition;
+        // playerPosition.x = playerXPosition[LaneNumber - 1];
+        // player.transform.position = playerPosition;
 
         laneText.text = "Lane " + LaneNumber.ToString();
 

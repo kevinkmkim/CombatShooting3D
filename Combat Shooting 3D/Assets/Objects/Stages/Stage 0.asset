@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1001
   stageName: Shooting Gallery
-  terrain: {fileID: 2552295921300661292, guid: 345ed4851138149939e935b3102b50fb, type: 3}
+  terrain: {fileID: 5661778309212697160, guid: 345ed4851138149939e935b3102b50fb, type: 3}
   target: {fileID: 2672569314604813706, guid: d84eb02a43a5240f59a8ca9aac36c415, type: 3}
   playerPositions:
   - {x: 216.8, y: 14.5, z: 87.7}
