@@ -164,7 +164,7 @@ public class GameManager : Singleton<GameManager>
                 if (remainingAmmos > 0)
                 {
                     remainingAmmos--;
-                    Weapon.Shoot();
+                    // Weapon.Shoot();
                     gunShotAudioSource.PlayOneShot(gunShotAudioClip);
                     VibrateDevice.Vibrate(100);
                 }
@@ -177,7 +177,7 @@ public class GameManager : Singleton<GameManager>
             {
                 if (!isGameOver)
                 {
-                    Weapon.Shoot();
+                    // Weapon.Shoot();
                     gunShotAudioSource.PlayOneShot(gunShotAudioClip);
                     VibrateDevice.Vibrate(100);
                 }

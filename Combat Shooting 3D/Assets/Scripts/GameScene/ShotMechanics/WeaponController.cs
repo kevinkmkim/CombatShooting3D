@@ -9,9 +9,13 @@ public class WeaponController : MonoBehaviour
 
     #region Serialized Field
     [SerializeField] private Transform weaponPivotTransform;
+    [SerializeField] private GameObject weaponPrefab;
+    [SerializeField] private GameObject bulletPrefab;
     #endregion
 
     #region Properties
+    private Weapon weapon;
+
     private bool isAiming;
     
     private Vector3 aimWeaponPosition = new Vector3(0.0f, -0.36f, 0.12f);
@@ -19,13 +23,15 @@ public class WeaponController : MonoBehaviour
     private Vector3 easeWeaponPosition = new Vector3(0.2f, -0.5f, 0.25f);
     private Quaternion easeWeaponRotation = Quaternion.Euler(12.0f, -3.5f, 15.0f);
 
-    private bool isWeaponMoving = false;
+    private bool isMovingAim = false;
     private float transitionDuration = 0.8f;
     #endregion
 
     private void OnEnable()
     {
         isAiming = false;
+        weapon = weaponPrefab.GetComponent<Weapon>();
+
         weaponPivotTransform.localPosition = easeWeaponPosition;
         weaponPivotTransform.localRotation = Quaternion.identity;
     }
@@ -33,13 +39,16 @@ public class WeaponController : MonoBehaviour
     public void HandleShootEvent()
     {
         Debug.Log("SHOOT from WeaponController");
+        // Instantiate(bulletPrefab, weaponPivotTransform);
+        Vector3 initialScale = new Vector3(2, 2, 2);
+        Instantiate(bulletPrefab, weapon.firePoint);
     }
 
     public void HandleAimEvent()
     {
         Debug.Log("AIM from WeaponController");
         
-        if (!isWeaponMoving)
+        if (!isMovingAim)
         {
             isAiming = !isAiming;
             if (isAiming)
@@ -55,7 +64,7 @@ public class WeaponController : MonoBehaviour
 
     private IEnumerator MoveWeapon(Vector3 newPosition, Quaternion newQuaternion)
     {
-        isWeaponMoving = true;
+        isMovingAim = true;
         float elapsedTime = 0.0f;
         Vector3 initialPosition = weaponPivotTransform.localPosition;
         Quaternion initialRotation = weaponPivotTransform.localRotation;
@@ -75,7 +84,7 @@ public class WeaponController : MonoBehaviour
         weaponPivotTransform.localPosition = newPosition;
         weaponPivotTransform.localRotation = newQuaternion;
         
-        isWeaponMoving = false;
+        isMovingAim = false;
     }
 
     private float EaseInOutQuad(float t)
