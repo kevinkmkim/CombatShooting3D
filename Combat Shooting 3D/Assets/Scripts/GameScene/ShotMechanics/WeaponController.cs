@@ -14,7 +14,8 @@ public class WeaponController : MonoBehaviour
     #endregion
 
     #region Properties
-    private Weapon weapon;
+    private GameObject weaponInstance;
+    private Weapon weaponComponent;
 
     private bool isAiming;
     
@@ -29,11 +30,14 @@ public class WeaponController : MonoBehaviour
 
     private void OnEnable()
     {
-        isAiming = false;
-        weapon = weaponPrefab.GetComponent<Weapon>();
+
+        weaponInstance = Instantiate(weaponPrefab);
+        // weapon = weaponPrefab.GetComponent<Weapon>();
 
         weaponPivotTransform.localPosition = easeWeaponPosition;
         weaponPivotTransform.localRotation = Quaternion.identity;
+
+        isAiming = false;
     }
 
     public void HandleShootEvent()
@@ -41,7 +45,7 @@ public class WeaponController : MonoBehaviour
         Debug.Log("SHOOT from WeaponController");
         // Instantiate(bulletPrefab, weaponPivotTransform);
         Vector3 initialScale = new Vector3(2, 2, 2);
-        Instantiate(bulletPrefab, weapon.firePoint);
+        Instantiate(bulletPrefab);
     }
 
     public void HandleAimEvent()

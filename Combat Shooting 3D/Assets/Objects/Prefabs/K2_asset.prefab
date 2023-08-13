@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 8625945636415886822}
   - component: {fileID: 4619101467912526403}
   - component: {fileID: 7493619270471495305}
-  - component: {fileID: 8865555888586901300}
   m_Layer: 0
   m_Name: K2_asset
   m_TagString: Untagged
@@ -124,18 +123,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8865555888586901300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9006728072079478620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1535f0af679492da5ea67d272420fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 7379829174359470254}
-  bulletPrefab: {fileID: 8713734259752288974, guid: 760f083a9fb7e4603a302d30563f7c1c,
-    type: 3}

@@ -1336,7 +1336,6 @@ GameObject:
   m_Component:
   - component: {fileID: 470605652}
   - component: {fileID: 470605654}
-  - component: {fileID: 470605653}
   m_Layer: 0
   m_Name: Armature
   m_TagString: Untagged
@@ -1362,22 +1361,6 @@ Transform:
   m_Father: {fileID: 81424546}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &470605653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470605650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca1535f0af679492da5ea67d272420fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultBulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  primaryPivot: {fileID: 0}
-  secondaryPivot: {fileID: 0}
 --- !u!114 &470605654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3827,7 +3810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67e16f99e9ec47cda0fa5b22b424d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivotTransform: {fileID: 1132696736}
+  weaponPivotTransform: {fileID: 3894424912025379207}
   weaponPrefab: {fileID: 1446299965}
   bulletPrefab: {fileID: 8713734259752288974, guid: 760f083a9fb7e4603a302d30563f7c1c,
     type: 3}
@@ -4051,12 +4034,12 @@ PrefabInstance:
     - target: {fileID: 124479526953978501, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 124479526953978501, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.64
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 124479526953978501, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
         type: 3}
@@ -4097,6 +4080,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: K2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139056634577991630, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
+        type: 3}
+      propertyPath: initialPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139056634577991630, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
+        type: 3}
+      propertyPath: initialPosition.z
+      value: 0.17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d, type: 3}
