@@ -8,20 +8,21 @@ public class WeaponController : MonoBehaviour
 {
 
     #region Serialized Field
-    [SerializeField] private Transform weaponPivotTransform;
-    [SerializeField] private GameObject weaponPrefab;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private Transform armatureTransform;
     #endregion
 
     #region Properties
-    private GameObject weaponInstance;
-    private Weapon weaponComponent;
+    private GameObject weaponPrefab;
+    private GameObject bulletPrefab;
 
     private bool isAiming;
-    
-    private Vector3 aimWeaponPosition = new Vector3(0.0f, -0.36f, 0.12f);
+
+    private Vector3 aimWeaponPosition = new Vector3(0.0f, -0.3f, 0.17f);
     private Quaternion aimWeaponRotation = Quaternion.identity;
-    private Vector3 easeWeaponPosition = new Vector3(0.2f, -0.5f, 0.25f);
+
+    private Vector3 positionOffset = new Vector3(0.2f, -0.14f, 0.13f);
+    private Vector3 easeWeaponPosition;
     private Quaternion easeWeaponRotation = Quaternion.Euler(12.0f, -3.5f, 15.0f);
 
     private bool isMovingAim = false;
@@ -30,12 +31,13 @@ public class WeaponController : MonoBehaviour
 
     private void OnEnable()
     {
+        easeWeaponPosition = aimWeaponPosition + positionOffset;
 
-        weaponInstance = Instantiate(weaponPrefab);
-        // weapon = weaponPrefab.GetComponent<Weapon>();
+        weaponPrefab = Instantiate(weapon.weaponPrefab, armatureTransform);
+        weaponPrefab.transform.localPosition = easeWeaponPosition;
+        weaponPrefab.transform.localRotation = easeWeaponRotation;
 
-        weaponPivotTransform.localPosition = easeWeaponPosition;
-        weaponPivotTransform.localRotation = Quaternion.identity;
+        bulletPrefab = weapon.defaultBullet.bulletPrefab;
 
         isAiming = false;
     }
@@ -43,15 +45,24 @@ public class WeaponController : MonoBehaviour
     public void HandleShootEvent()
     {
         Debug.Log("SHOOT from WeaponController");
-        // Instantiate(bulletPrefab, weaponPivotTransform);
-        Vector3 initialScale = new Vector3(2, 2, 2);
-        Instantiate(bulletPrefab);
+        Debug.Log(weaponPrefab.transform.position);
+        Debug.Log(weaponPrefab.transform.localPosition);
+        GameObject bulletInstance = Instantiate(bulletPrefab);
+        bulletInstance.transform.position = weaponPrefab.transform.position;
+        bulletInstance.transform.rotation = weaponPrefab.transform.rotation;
+        Vector3 newScale = new Vector3(5f, 5f, 5f);
+        bulletInstance.transform.localScale = newScale;
+
+        Rigidbody bulletRigidBody = bulletInstance.GetComponent<Rigidbody>();
+
+        bulletRigidBody.velocity = bulletInstance.transform.forward * 500f;
+
     }
 
     public void HandleAimEvent()
     {
         Debug.Log("AIM from WeaponController");
-        
+
         if (!isMovingAim)
         {
             isAiming = !isAiming;
@@ -70,8 +81,8 @@ public class WeaponController : MonoBehaviour
     {
         isMovingAim = true;
         float elapsedTime = 0.0f;
-        Vector3 initialPosition = weaponPivotTransform.localPosition;
-        Quaternion initialRotation = weaponPivotTransform.localRotation;
+        Vector3 initialPosition = weaponPrefab.transform.localPosition;
+        Quaternion initialRotation = weaponPrefab.transform.localRotation;
 
         while (elapsedTime < transitionDuration)
         {
@@ -79,15 +90,15 @@ public class WeaponController : MonoBehaviour
 
             float easedT = EaseInOutQuad(t);
 
-            weaponPivotTransform.localPosition = Vector3.Lerp(initialPosition, newPosition, easedT);
-            weaponPivotTransform.localRotation = Quaternion.Lerp(initialRotation, newQuaternion, easedT);
+            weaponPrefab.transform.localPosition = Vector3.Lerp(initialPosition, newPosition, easedT);
+            weaponPrefab.transform.localRotation = Quaternion.Lerp(initialRotation, newQuaternion, easedT);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        weaponPivotTransform.localPosition = newPosition;
-        weaponPivotTransform.localRotation = newQuaternion;
-        
+        weaponPrefab.transform.localPosition = newPosition;
+        weaponPrefab.transform.localRotation = newQuaternion;
+
         isMovingAim = false;
     }
 

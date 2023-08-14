@@ -3139,12 +3139,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1446299965 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9006728072079478620, guid: 6432ae1dc25cf4f46b6ae3c91cd9d345,
-    type: 3}
-  m_PrefabInstance: {fileID: 2705737140844686003}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1530410005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3810,10 +3804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67e16f99e9ec47cda0fa5b22b424d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPivotTransform: {fileID: 3894424912025379207}
-  weaponPrefab: {fileID: 1446299965}
-  bulletPrefab: {fileID: 8713734259752288974, guid: 760f083a9fb7e4603a302d30563f7c1c,
-    type: 3}
+  weapon: {fileID: 11400000, guid: b399a6c3c3c064cf0877ba8db62c3fe4, type: 2}
+  armatureTransform: {fileID: 470605652}
 --- !u!4 &2110272017
 Transform:
   m_ObjectHideFlags: 0
@@ -4080,6 +4072,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: K2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437022537649144963, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7139056634577991630, guid: 97a2fa82b2dca4ae3880b4e300bfeb8d,
         type: 3}
