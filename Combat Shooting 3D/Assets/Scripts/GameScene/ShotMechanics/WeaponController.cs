@@ -45,8 +45,6 @@ public class WeaponController : MonoBehaviour
     public void HandleShootEvent()
     {
         Debug.Log("SHOOT from WeaponController");
-        Debug.Log(weaponPrefab.transform.position);
-        Debug.Log(weaponPrefab.transform.localPosition);
         GameObject bulletInstance = Instantiate(bulletPrefab);
         bulletInstance.transform.position = weaponPrefab.transform.position;
         bulletInstance.transform.rotation = weaponPrefab.transform.rotation;

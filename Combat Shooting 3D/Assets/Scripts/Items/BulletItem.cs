@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BulletItem : MonoBehaviour
 {
-    private float delay = 2.0f;
+    private float delay = 1.0f;
+
+    private void OnEnable()
+    {
+        StartCoroutine(WaitAndDestroy());
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
